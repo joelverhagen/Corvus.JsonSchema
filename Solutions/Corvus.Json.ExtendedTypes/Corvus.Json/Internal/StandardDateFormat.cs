@@ -14,6 +14,11 @@ namespace Corvus.Json.Internal;
 public static class StandardDateFormat
 {
     /// <summary>
+    /// Gets or sets a value indicating whether parsed date-time instances can have a missing offset (time zone).
+    /// </summary>
+    public static bool AllowMissingOffset { get; set; }
+
+    /// <summary>
     /// Convert a date to a string for the <c>date</c> format.
     /// </summary>
     /// <param name="value">The value to format.</param>
@@ -201,7 +206,7 @@ public static class StandardDateFormat
         // the time section
         int indexOfOffset = text[8..].IndexOfAny("zZ+-".AsSpan());
 
-        if (indexOfOffset < 0)
+        if (indexOfOffset < 0 && !AllowMissingOffset)
         {
             hours = 0;
             minutes = 0;
@@ -220,6 +225,12 @@ public static class StandardDateFormat
         {
             offsetSeconds = 0;
             return false;
+        }
+
+        if (indexOfOffset < 0)
+        {
+            offsetSeconds = 0;
+            return true;
         }
 
         if (text[indexOfOffset] == 'Z' || text[indexOfOffset] == 'z')
