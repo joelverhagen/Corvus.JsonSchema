@@ -10,6 +10,10 @@
 		<ToolCommandName>generatejsonschematypes</ToolCommandName>
 		<PackageOutputPath>./nupkg</PackageOutputPath>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+	
+	  <PackageId>Knapcode.Corvus.Json.JsonSchema.TypeGeneratorTool</PackageId>
+	  <PackageVersion>4.3.19-prerelease.1</PackageVersion>
+	  <Description>This is a prerelease build of Corvus.Json.JsonSchema.TypeGeneratorTool to fix a bug.</Description>
   </PropertyGroup>
 
   <PropertyGroup>
